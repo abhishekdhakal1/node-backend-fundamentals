@@ -6,14 +6,11 @@ const userRouter = require("./routes/user");
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// Connect to DB
 connectMongoDb(process.env.MONGO_URL)
   .then(() => console.log("MongoDB Connected"))
   .catch((err) => console.log("Mongo Error", err));
 
-//app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
-
 app.use("/api/users", userRouter);
 
 app.listen(PORT, () => console.log(`Server started at PORT: ${PORT}`));
